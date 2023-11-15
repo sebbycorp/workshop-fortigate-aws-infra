@@ -14,10 +14,10 @@ terraform {
 terraform {
   backend "s3" {
     encrypt        = true
-    bucket         = "fgs3-<replace_me>-terraform-state"
-    key            = "fgs3-<replace_me>-terraform-state"
+    bucket         = "fgs3-awx5-terraform-state"
+    key            = "fgs3-awx5-terraform-state"
     region         = "eu-west-1"
-    dynamodb_table = "fgs3-<replace_me>-terraform-state-lock-dynamo"
+    dynamodb_table = "fgs3-awx5-terraform-state-lock-dynamo"
   }
 }
 provider "aws" {
