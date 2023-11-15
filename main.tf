@@ -4,10 +4,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "5.23.1"
     }
-    # fortios = {
-    #   source  = "fortinetdev/fortios"
-    #   version = "1.18.0"
-    # }
+    fortios = {
+      source  = "fortinetdev/fortios"
+      version = "1.18.0"
+    }
   }
 }
 
@@ -29,23 +29,23 @@ module "infrastructure" {
 }
 
 
-# provider "fortios" {
-#   hostname = module.infrastructure.FGTPublicIP
-#   token    = var.fortios_token
-#   insecure = "true"
-# }
+provider "fortios" {
+  hostname = module.infrastructure.FGTPublicIP
+  token    = var.fortios_token
+  insecure = "true"
+}
 
 
-# module "core-fw-config" {
-#   source = "./core-fw-config"
-#   depends_on = [ module.infrastructure ]
-# }
+module "core-fw-config" {
+  source = "./core-fw-config"
+  depends_on = [ module.infrastructure ]
+}
 
-# module "apps" {
-#   source = "./apps"
-#   fwsshkey           = module.infrastructure.fwsshkey
-#   customer_vpc_id    = module.infrastructure.customer_vpc_id
-#   csprivatesubnetaz1 = module.infrastructure.csprivatesubnetaz1
-#   csprivatesubnetaz2 = module.infrastructure.csprivatesubnetaz2
-#   depends_on = [ module.core-fw-config ]
-# }
+module "apps" {
+  source = "./apps"
+  fwsshkey           = module.infrastructure.fwsshkey
+  customer_vpc_id    = module.infrastructure.customer_vpc_id
+  csprivatesubnetaz1 = module.infrastructure.csprivatesubnetaz1
+  csprivatesubnetaz2 = module.infrastructure.csprivatesubnetaz2
+  depends_on = [ module.core-fw-config ]
+}

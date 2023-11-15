@@ -1,2 +1,2 @@
-# variable "fortios_token" {
-# }
+variable "fortios_token" {
+}
