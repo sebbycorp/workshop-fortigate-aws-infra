@@ -30,7 +30,7 @@ module "infrastructure" {
 
 
 provider "fortios" {
-  hostname = module.infrastructure.FGTPublicIP
+  hostname = "fgt_terraform_test"
   token    = var.fortios_token
   insecure = "true"
 }
